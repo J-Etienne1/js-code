@@ -38,8 +38,7 @@ describe("<Stepper Component test>", () => {
     cy.get(stepperSelector).should("contain.text", -1);
   });
 
-
-  it('has an initial counter that can be incremented and decremented', () => {
+  it("has an initial counter that can be incremented and decremented", () => {
     // Arrange
     cy.mount(<Stepper initial={10} />);
     // Act
@@ -47,5 +46,27 @@ describe("<Stepper Component test>", () => {
     cy.get(decrementSelector).click();
     // Assert
     cy.get(stepperSelector).should("contain.text", 11);
+  });
+
+  // or
+  it("has an initial counter that can be incremented and decremented (Variation)", () => {
+    // Arrange
+    cy.mount(<Stepper initial={100} />);
+    // Assert
+    cy.get(stepperSelector).should("contain.text", 100);
+    // Act
+    cy.get(incrementSelector).click();
+    // Assert
+    cy.get(stepperSelector).should("contain.text", 101);
+
+    // Act
+    cy.get(incrementSelector).click();
+    // Assert
+    cy.get(stepperSelector).should("contain.text", 102);
+
+    // Act
+    cy.get(decrementSelector).click();
+    // Assert
+    cy.get(stepperSelector).should("contain.text", 101);
   });
 });
