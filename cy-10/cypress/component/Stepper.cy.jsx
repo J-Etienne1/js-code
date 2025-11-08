@@ -70,16 +70,34 @@ describe("<Stepper Component test>", () => {
     cy.get(stepperSelector).should("contain.text", 101);
   });
 
-
-
   // Spy's
-  it('clicking + fires a change event with the incremented value', () => {
-  // Arrange 
-  const onChangeSpy = cy.spy().as('onChangeSpy');
-  cy.mount(<Stepper onChange={onChangeSpy} />);
-  // Act
-  cy.get(incrementSelector).click();
-  // Assert
-  cy.get('@onChangeSpy').should('have.been.calledOnceWith', 1);
-  })
+  it("clicking + fires a change event with the incremented value", () => {
+    // Arrange
+    const onChangeSpy = cy.spy().as("onChangeSpy");
+    cy.mount(<Stepper onChange={onChangeSpy} />);
+    // Act
+    cy.get(incrementSelector).click();
+    // Assert
+    cy.get("@onChangeSpy").should("have.been.calledOnceWith", 1);
+  });
+
+
+  // Intercept - Network Stubbing 
+  it.skip("sends a POST request to /count with the new count", () => {
+    cy.intercept("POST", "/count").as("postCount");
+
+    cy.mount(<Stepper initial={0} />);
+
+    cy.get(incrementSelector).click();
+
+    cy.wait("@postCount")
+      .its("request.body")
+      .should("deep.equal", { count: 1 });
+
+    cy.get(decrementSelector).click();
+
+    cy.wait("@postCount")
+      .its("request.body")
+      .should("deep.equal", { count: 0 });
+  });
 });

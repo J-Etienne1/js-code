@@ -1,7 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Stepper({ initial = 0, onChange = () => {} }) {
   const [count, setCount] = useState(initial);
+
+  useEffect(() => {
+    fetch("/count", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ count }),
+    });
+  }, [count]);
 
   const increment = () => {
     const newCount = count + 1;
