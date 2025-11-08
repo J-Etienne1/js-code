@@ -29,7 +29,7 @@ describe("<Stepper Component test>", () => {
     cy.get(stepperSelector).should("contain.text", 1);
   });
 
-  it('can be incremented by clicking the "+" button', () => {
+  it('can be decremented by clicking the "-" button', () => {
     // Arrange
     cy.mount(<Stepper />);
     // Act
