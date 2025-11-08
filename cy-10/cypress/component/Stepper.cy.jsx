@@ -80,6 +80,6 @@ describe("<Stepper Component test>", () => {
   // Act
   cy.get(incrementSelector).click();
   // Assert
-  cy.get('@onChangeSpy').should('have.been.called.with', 1);
+  cy.get('@onChangeSpy').should('have.been.calledOnceWith', 1);
   })
 });
