@@ -15,11 +15,10 @@ describe("<Stepper Component test>", () => {
 
   it('supports and "initial" prop to set the value', () => {
     // Arrange
-    cy.mount(<Stepper initial={100}/>);
+    cy.mount(<Stepper initial={100} />);
     // Assert
     cy.get(stepperSelector).should("contain.text", 100);
   });
-
 
   it('can be incremented by clicking the "+" button', () => {
     // Arrange
@@ -29,7 +28,6 @@ describe("<Stepper Component test>", () => {
     // Assert
     cy.get(stepperSelector).should("contain.text", 1);
   });
-
 
   it('can be incremented by clicking the "+" button', () => {
     // Arrange
