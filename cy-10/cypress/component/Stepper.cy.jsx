@@ -69,4 +69,17 @@ describe("<Stepper Component test>", () => {
     // Assert
     cy.get(stepperSelector).should("contain.text", 101);
   });
+
+
+
+  // Spy's
+  it('clicking + fires a change event with the incremented value', () => {
+  // Arrange 
+  const onChangeSpy = cy.spy().as('onChangeSpy');
+  cy.mount(<Stepper onChange={onChangeSpy} />);
+  // Act
+  cy.get(incrementSelector).click();
+  // Assert
+  cy.get('@onChangeSpy').should('have.been.called.with', 1);
+  })
 });
