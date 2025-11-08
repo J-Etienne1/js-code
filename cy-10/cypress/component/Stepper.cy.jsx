@@ -37,4 +37,15 @@ describe("<Stepper Component test>", () => {
     // Assert
     cy.get(stepperSelector).should("contain.text", -1);
   });
+
+
+  it('has an initial counter that can be incremented and decremented', () => {
+    // Arrange
+    cy.mount(<Stepper initial={10} />);
+    // Act
+    cy.get(incrementSelector).click().click();
+    cy.get(decrementSelector).click();
+    // Assert
+    cy.get(stepperSelector).should("contain.text", 11);
+  });
 });
