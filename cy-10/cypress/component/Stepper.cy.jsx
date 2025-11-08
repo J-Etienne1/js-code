@@ -19,4 +19,24 @@ describe("<Stepper Component test>", () => {
     // Assert
     cy.get(stepperSelector).should("contain.text", 100);
   });
+
+
+  it('can be incremented by clicking the "+" button', () => {
+    // Arrange
+    cy.mount(<Stepper />);
+    // Act
+    cy.get(incrementSelector).click();
+    // Assert
+    cy.get(stepperSelector).should("contain.text", 1);
+  });
+
+
+  it('can be incremented by clicking the "+" button', () => {
+    // Arrange
+    cy.mount(<Stepper />);
+    // Act
+    cy.get(decrementSelector).click();
+    // Assert
+    cy.get(stepperSelector).should("contain.text", -1);
+  });
 });
